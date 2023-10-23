@@ -1,0 +1,43 @@
+@startuml PeerPartyModel
+
+class Party {
+    topic
+    owner: string
+    participants
+    chat
+    video
+}
+
+class Video {
+    filename
+    duration
+    time
+    isPlaying
+
+    setPlaying(isPlaying)
+    seek(time)
+}
+
+class Participant {
+    id
+    nick
+
+    typing
+    typingTimestamp
+}
+
+class Chat {
+    autoScroll: boolean
+    messages
+}
+class Message {
+    nick
+    text
+}
+
+
+Party o-- "1..*" Participant
+Party -- Video
+Party -- Chat
+Chat -- "*" Message
+@enduml
