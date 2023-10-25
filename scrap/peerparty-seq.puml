@@ -1,0 +1,28 @@
+@startuml
+
+actor Alice as A
+actor Bob as B
+actor Ciel as C
+entity "Signaling Server" as S
+
+A -> S CONNECT
+A <- S peerId
+
+B create
+B -- S
+
+B -> A "NICK"
+B <- A "OK"
+
+B -> A getVideoState
+B <- A videoState
+
+B -> A setVideoState
+A <- A setVideoState
+C <- A setVideoState
+
+B -> A addMessage
+B <- A ok
+C <- addMessage
+
+@enduml

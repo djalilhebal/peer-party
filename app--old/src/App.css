@@ -1,0 +1,30 @@
+.step {
+  border: 1px solid black;
+  border-left-width: 5px;
+  margin-bottom: 5px;
+  padding: 1rem;
+}
+
+.step--completed {
+  border-color: green;
+}
+
+.radiogroup {
+  display: flex;
+  justify-content: center;
+}
+
+.radiocard {
+  background: #efefef;
+  color: black;
+  background: gray;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  margin: 1rem;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.radiocard:has(input:checked) {
+  background: green;
+}

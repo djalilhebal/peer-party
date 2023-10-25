@@ -1,0 +1,15 @@
+.theater {
+    display: grid;
+    grid-template-areas:
+        "video chat";
+}
+
+.theater__video {
+    grid-area: video;
+    width: 100%;
+}
+
+.theater__chat {
+    grid-area: chat;
+    width: 100%;
+}
