@@ -1,5 +1,17 @@
 # Peer Party: Ramblings
 
+PeerParty is inspired by:
+- The IRC protocol.
+- The SyncPlay protocol.
+- RPC, JSON-RPC, Redux/Flux actions, and the command design pattern.
+(They all are the same if you believe hard enough.)
+
+Possible improvements:
+- Fault tolerance
+- Optimistic updates
+
+---
+
 Presence indicator:
 ```js
 // add to App
@@ -108,6 +120,8 @@ PeerJS serves three purposes:
 
 
 ## Assumptions
+
+- Trusted participants.
 
 - Tiny scale. \
 So we don't worry about windowing (rendering),

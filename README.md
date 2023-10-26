@@ -9,8 +9,54 @@ Create a watch party for locally stored videos\*.
     <img width="400" height="241" alt="Obvio" src="obvio.jpg" />
 </center>
 
+The app's logic is nothing extraordinary\* (unlike [Extraordinary Tales][imdb-extraordinary-tales]).
+I tried to make something that does its job and be as streamlined as possible:
+- It requires no servers, at least none that we need to operate.
+You could even host it on IPFS and it'd just work. _That's the theory anyways._
+- ...
+
+\* I have simply rehashed the same ideas from my previous projects, mainly:
+- [Zero Messenger][zero] (JavaScript, VueJS, inspired by TCP)
+- [Chatroom gRPC][chatroom-grpc] (C#, WPF, inspired by IRC)
+
+
+## Name
+
+- **PeerParty**: A **Peer**-to-peer watch **party**.
+    * You create a watch party for your peers/friends.
+    * Also, it is a peer-to-peer app.
+    * Also, also, the name alliterates!
+
+<details>
+Other names I considered:
+
+- **Social Viewing**: it can't get any more descriptive.
+    * [Social viewing | Wikipedia](https://en.wikipedia.org/wiki/Social_viewing)
+
+- **Le Social Viewing**: Local social viewing.
+
+- **In Time**: After the sci-fi [movie of the same name][imdb-in-time]. That's all.
+
+- **ParaPlay**: Parallel + Play.
+
+- **SocView**/**SocVue**/**SocSync**/**ViewSoc**
+    * Social Viewing.
+    * Sockets (WebSocket, WebRTC, Socket.io) + VueJS.
+    * Something something **IngSoc** (English Socialism from the novel _1984_).
+</details>
+
 
 ## Features
+
+- Video sources
+    * Local file (think: `file://*`).
+
+    * [ ] Remote file (`http://*` and `https://*`). Super unimportant.
+    What raw files would anyone want to watch? I can only think of the Internet Archive's.
+
+    * [ ] WebTorrent. Very unimportant.
+      We assume the user has low bandwidth, so we can't expect them to stream and seed stuff.
+      Also, and this is the bigger problem, I've checked a few movie torrets. There were no WebTorrent seeders.
 
 - Video state sync (a la SyncPlay)
     * Position (current time)
@@ -18,31 +64,28 @@ Create a watch party for locally stored videos\*.
 
 - Basic chat features (a la IRC)
     * Nicknames `/nick`
-    * Topic `/topic`
-    * Current participants `/who`
+    * Session name or topic `/topic`
+    * List of current participants `/who`
     * Auto-scroll + pause on mouse hover
     * Typing indicator
-    * Presence indicator
+    * [ ] Presence indicator
 
 - Peer-to-peer
     * Well, almost...
-    * We use PeerJS (can be removed).
     * WebRTC needs servers like a signaling server (we use PeerJS's).
 
-Possible improvements:
-- Fault tolerance
-- Optimistic updates
 
-The app's logic is nothing extraordinary (unlike [Extraordinary Tales][imdb-extraordinary-tales]). \
-I have simply rehashed the same ideas from my previous projects:
-- [Zero Messenger][zero] (JavaScript, VueJS)
-- [Chatroom gRPC][chatroom-grpc] (C#, WPF, inspired by IRC)
+## Getting started
 
-PeerParty is inspired by:
-- The IRC protocol.
-- The SyncPlay protocol.
-- RPC, JSON-RPC, Redux/Flux actions, and the command design pattern.
-(They all are the same if you believe hard enough.)
+This app was created using Vite (`npm create vite@latest`).
+
+To run locally:
+```sh
+git clone https://github.com/djalilhebal/peer-party
+cd peer-party
+npm install
+npm run dev
+```
 
 
 ## Uses
@@ -58,20 +101,7 @@ PeerParty is inspired by:
     * For now, we are using PeerJS STUN server, but Google's might be better.
     * https://jmcker.github.io/Peer-to-Peer-Cue-System/
 
-- [Vite](https://vitejs.dev/): Build tool
-
-
-## Getting started
-
-This app was created using Vite (`npm create vite@latest`).
-
-To run locally:
-```sh
-git clone https://github.com/djalilhebal/peer-party
-cd peer-party
-npm install
-npm run dev
-```
+- [Vite](https://vitejs.dev/): Build tool.
 
 
 ## Motivation / Background
@@ -136,30 +166,6 @@ Same process goes for sending messages.
 Alice, the party owner, is a centralized "server" and the source of truth.
 
 
-## Name
-
-- **PeerParty**: A **Peer**-to-peer watch **party**.
-    * You create a watch party for your peers/friends.
-    * Also, it is a peer-to-peer app.
-    * Also, also, it alliterates!
-
-Other names I considered:
-
-- **Social Viewing**: it can't get any more descriptive.
-    * [Social viewing | Wikipedia](https://en.wikipedia.org/wiki/Social_viewing)
-
-- **Le Social Viewing**: Local social viewing.
-
-- **In Time**: After the scifi [movie of the same name][imdb-in-time]. That's all.
-
-- **ParaPlay**: Parallel + Play
-
-- **SocView**/**SocVue**/**SocSync**/**ViewSoc**
-    * Social Viewing.
-    * Sockets (WebSocket, WebRTC, Socket.io) + VueJS.
-    * Something something **IngSoc** (English Socialism from the novel _1984_).
-
-
 ## Existing solutions
 
 Note: Checked items mean I've skimmed their docs, checked their source code, or/and tried them.
@@ -169,10 +175,10 @@ Note: Checked items mean I've skimmed their docs, checked their source code, or/
     * https://github.com/sheldor1510/local-party
     * https://github.com/sheldor1510/local-party-api
     * "A website where you can create rooms and chat while watching local video files synchronized with your friends."
-    * Works with local files
-    * It uses the file size to know that the files aren't the same
-    * It depends on socket.io, mongoose/MongoDB, 
-    * Dislikes:
+    * Works with local files.
+    * It uses the file size to know that the files aren't the same.
+    * It depends on socket.io, mongoose/MongoDB, etc.
+    * Disliked:
         + It does not handle video seek events (try playing a vid and seeking using arrow keys).
         + It broadcasts shit that others don't need to hear + even sensitive data (`roomCode`).
         + It lets the client define the `roomCode`.
@@ -180,7 +186,9 @@ Note: Checked items mean I've skimmed their docs, checked their source code, or/
         + Even validating `/join` is left to the client.
         + To manage state, it reloads the page.
         + API and protocol designs are meh.
-        + [ ] DOUBLE CHECK: Can it run and scale horizontally (by adding multiple instances)? I think not.
+        + [ ] DOUBLE CHECK: Can it run and scale horizontally (by adding multiple instances)? _I think not._
+        * :yellow_square: Requires that you enter the room name. (Kinda bothersome and useless.)
+        * :yellow_square: The file selector accepts `*/*`, when it should accept only `video/*`.
 
 - [x] Syncplay
 
@@ -216,20 +224,20 @@ Note: Checked items mean I've skimmed their docs, checked their source code, or/
 
     * Nice minimalist design
     * Supports only online websites
-    * KAITO: It can work with direct files (e.g. mp4), but it is not allowed directly.
+    * KAITO: It could  work with direct files (e.g. mp4).
     I can fork it to support the `file://` protocol by asking the user to open the file instead (using input HTML element and maybe FileReader API).
     * Notes:
-        + Uses Firebase
-        + Requires the installation of a browser extension.
+        + :yellow_square: Uses Firebase
+        + :red_square: Requires the installation of a browser extension.
 
-- [ ] Jelly Party https://www.jelly-party.com/
+- [ ] Jelly Party https://www.jelly-party.com
 
 - [ ] https://github.com/steeelydan/sync-party
 
 
 ## License
 
-CC-BY, Abdeldjalil HEBAL
+[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) © Abdeldjalil HEBAL
 
 
 [charade_archiveorg]: https://archive.org/details/Charade_1953
