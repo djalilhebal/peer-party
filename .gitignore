@@ -1,7 +1,7 @@
 __saved
 
-app/package-lock.json
+tales-tester/tests/CHARADE_1953.mp4
+tales-tester/tests/CHARADE_1953_512kb.mp4
+tales-tester/tests/CHARADE_1953.ogv
 
-tests/CHARADE_1953.mp4
-tests/CHARADE_1953_512kb.mp4
-tests/CHARADE_1953.ogv
+app/package-lock.json

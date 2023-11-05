@@ -1,6 +1,35 @@
 # Peer Party: Ramblings
 
 
+## Getting started
+
+How I started:
+```sh
+# Create a TypeScript project named 'app'
+npm create vite@latest
+```
+
+Getting started:
+```sh
+# Clone it then:
+cd peer-party/app
+npm install
+npm run dev
+```
+
+### Testing (Tales)
+
+```sh
+node tests/tale-0.js | faucet
+```
+
+- Tape
+    * faucet "human-readable TAP summarizer"
+        + https://github.com/ljharb/faucet
+        + `npm install -g faucet`
+
+
+
 ## Design evolution
 
 PeerParty is inspired by:
@@ -20,6 +49,7 @@ Interesting:
 * https://en.wikipedia.org/wiki/JSON-RPC
 * https://www.jsonrpc.org
 
+---
 
 PeerJS serves three purposes:
 1. A signaling server

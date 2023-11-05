@@ -1,0 +1,14 @@
+{
+  "name": "tales-tester",
+  "version": "0.0.1",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {},
+  "devDependencies": {
+    "@playwright/test": "^1.39.0",
+    "@types/node": "^20.8.9"
+  },
+  "dependencies": {
+    "tape": "^5.7.2"
+  }
+}

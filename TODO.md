@@ -3,6 +3,7 @@
 ## UI/UX
 
 - [ ] Drag and drop files (video and subtitles).
+    * [ ] https://github.com/react-dropzone/react-dropzone
 
 - [ ] Support subtitles.
 
@@ -11,7 +12,7 @@
 - [ ] Fault tolerance (e.g. auto-reconnecting)
 
 - [ ] Optimistic updates (e.g. Viewer sends a message to Owner. Viewer should see it instantly.)
-
+    * See: https://react.dev/reference/react/useOptimistic
 
 ## Docs
 
@@ -20,9 +21,7 @@
 
 ## Test
 
-- [ ] Use Tape or Mocha's `test()` with Playwright's `expect()`
-
-- [ ] Rename `GenericAgent` to `ParticipantAgent`
+- [ ] Use Tape ~~or Mocha's~~ `test()` with Playwright's `expect()`
 
 - [ ] Expect the URL to contain the key (TBD the actual pattern)
     * `djalil.me/peer-party?code={roomCode}`
