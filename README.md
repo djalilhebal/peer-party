@@ -54,9 +54,7 @@ Other names I considered:
     * [ ] Remote file (`http://*` and `https://*`). Super unimportant.
     What raw files would anyone want to watch? I can only think of the Internet Archive's.
 
-    * [ ] WebTorrent. Very unimportant.
-      We assume the user has low bandwidth, so we can't expect them to stream and seed stuff.
-      Also, and this is the bigger problem, I've checked a few movie torrets. There were no WebTorrent seeders.
+    * [ ] Others? See Ramblings.
 
 - Video state sync (a la SyncPlay)
     * Position (current time)
@@ -117,6 +115,7 @@ Heck, Alice may even have a 30kbps download speed, but that shouldn't matter bec
 ---
 
 When designing this app, I had these goals and assumptions in mind:
+- **TLDR: No-nonsense to the user, in accordance with _Wonderland_'s principals.**
 - The app should be minimalist and lightweight.
 - The user should not install anything (desktop app or browser extension or whatever).
 - There should be no backend (none that we maintain anyways).
@@ -134,6 +133,12 @@ When designing this app, I had these goals and assumptions in mind:
     is to calculate and compare checksums (takes too long, esp for large files even if we use the simplest algorithms possible, like CRC).
     
     As far as I am concerned, it is [_much ado about nothing_][imdb-much-ado-about-nothing] since we can just trust our friends.
+
+Unimportant stuff:
+- Participants should not be able to communicate directly with one another.
+In the current impl, that means PeerJS ids should be kept private.
+
+"Wonderland"? It's like my design sysem/guide/UI library.
 
 
 ## How it works
@@ -164,6 +169,22 @@ Alice is the party owner.
 Same process goes for sending messages.
 
 Alice, the party owner, is a centralized "server" and the source of truth.
+
+For more details, see test scenarios in [Tales Tester](./TalesTester.md).
+
+```
+ConnectionManager
+
+acceptConnection:
+    isOwner ? True : False.
+
+acceptCommand:
+    isViewer? True (command from Owner)
+    isOwner? if command is 'addMessage' or 'setVideoState' or 'setNick'.
+
+if command has replyWith:
+    Owner sends the result of the command as a message to peer={peerId} and include correlationId={replyWith}.
+```
 
 
 ## Existing solutions
