@@ -28,21 +28,31 @@ Structure:
 ## Messaging
 
 ```ts
-interface Messaging {
-    broadcast(x: Envelope, excludeDestinations: String[]);
+interface MessagingAPI {
+    broadcast(x: Envelope, excludeDestinations: string[]);
     send(x: Envelope);
-    sendNotice(x: Message);
-    sendRequest(x: Message);
+    sendNotice(x: Envelope);
+    sendRequest(x: Envelope);
 }
 
 interface Envelope {
     payload: any,
-    senderId?: String,
-    correlationId?: String,
-    timestamp?: String,
+    senderId?: string,
+    correlationId?: string,
+    timestamp?: string,
 }
 ```
 
+There are two types of envelopes:
+- **Requests** expect responses.
+They MUST contain `correlationId`.
+- **Notices** expect no response (fire and forget).
+They MUST NOT contain `correlationId`.
+
+<aside>
+  JADE uses `replyWith=someId` (A sends request to B) and `inReplyTo=someId` (B sends response to A),
+  while we just use `correlationId=someId` for both sides.
+</aside>
 
 ### Envelope
 

@@ -12,12 +12,14 @@ Create a watch party for locally stored videos\*.
 The app's logic is nothing extraordinary\* (unlike [Extraordinary Tales][imdb-extraordinary-tales]).
 I tried to make something that does its job and be as streamlined as possible:
 - It requires no servers, at least none that we need to operate.
-You could even host it on IPFS and it'd just work. _That's the theory anyways._
+  You could even host it on IPFS and it should just work.
+- Automates as much as possible, including setting the room name (defaulting to the video file's name) and setting the room key (from the URL).
 - ...
 
 \* I have simply rehashed the same ideas from my previous projects, mainly:
-- [Zero Messenger][zero] (JavaScript, VueJS, inspired by TCP)
-- [Chatroom gRPC][chatroom-grpc] (C#, WPF, inspired by IRC)
+- [Zero Messenger][zero]: JavaScript, VueJS, inspired by TCP.
+- [Chatroom gRPC][chatroom-grpc]: C#, WPF, inspired by IRC.
+- While this one is: TypeScript, React, inspired by IRC.
 
 
 ## Name
@@ -28,7 +30,7 @@ You could even host it on IPFS and it'd just work. _That's the theory anyways._
     * Also, also, the name alliterates!
 
 <details>
-Other names I considered:
+<summary>Other names considered:</summary>
 
 - **Social Viewing**: it can't get any more descriptive.
     * [Social viewing | Wikipedia](https://en.wikipedia.org/wiki/Social_viewing)
@@ -172,27 +174,13 @@ Alice, the party owner, is a centralized "server" and the source of truth.
 
 For more details, see test scenarios in [Tales Tester](./TalesTester.md).
 
-```
-ConnectionManager
-
-acceptConnection:
-    isOwner ? True : False.
-
-acceptCommand:
-    isViewer? True (command from Owner)
-    isOwner? if command is 'addMessage' or 'setVideoState' or 'setNick'.
-
-if command has replyWith:
-    Owner sends the result of the command as a message to peer={peerId} and include correlationId={replyWith}.
-```
-
 
 ## Existing solutions
 
 Note: Checked items mean I've skimmed their docs, checked their source code, or/and tried them.
 
 - [x] Local Party
-    * https://localparty.netlify.app/
+    * https://localparty.netlify.app
     * https://github.com/sheldor1510/local-party
     * https://github.com/sheldor1510/local-party-api
     * "A website where you can create rooms and chat while watching local video files synchronized with your friends."
@@ -231,24 +219,22 @@ Note: Checked items mean I've skimmed their docs, checked their source code, or/
             * "Timeout due to lack of ping is typically set to 4 seconds so it is important that the client sends ‘ping’ heartbeat messages even when the file remains paused and nothing is happening."
             * "`ignoringOnTheFly` means the client/server is not just going with the status quo because there is a forced state change. It basically means “I will ignore state messages from you until you acknowledge that you got this state change message from me”."
 
-- [x] WatchParty
-    https://github.com/howardchung/watchparty
+- [x] WatchParty https://github.com/howardchung/watchparty
     * Stream your own file
 
-- [x] Metastream
-    https://app.getmetastream.com/
+- [x] Metastream https://app.getmetastream.com
     * Supports only online websites
 
 - [x] Turtle
-    https://turtletv.app/
-    https://github.com/shuang854/Turtle
+    * https://turtletv.app
+    * https://github.com/shuang854/Turtle
 
     * Nice minimalist design
-    * Supports only online websites
     * KAITO: It could  work with direct files (e.g. mp4).
-    I can fork it to support the `file://` protocol by asking the user to open the file instead (using input HTML element and maybe FileReader API).
+      I can fork it to support the `file://` protocol by asking the user to open the file instead (using input HTML element and maybe FileReader API).
     * Notes:
-        + :yellow_square: Uses Firebase
+        + :yellow_square: Uses Firebase.
+        + :yellow_square: Supports only online websites.
         + :red_square: Requires the installation of a browser extension.
 
 - [ ] Jelly Party https://www.jelly-party.com

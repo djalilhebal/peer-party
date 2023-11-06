@@ -1,13 +1,11 @@
-# Scenario 1: Alice and Bob
+# Automated testing
 
 (WIP)
-
-Automatic testing?
 
 Something like [playwright-test-2023-10-25.js](https://gist.github.com/djalilhebal/bf0beabb6433cf132231729ad8166745)
 
 
-## Act 1: Toxic Alice.
+## Scenario 1: Toxic Alice.
 
 - Alice enters the website.
 - Alice fills the form as the owner, selects Charade, and starts the session.
@@ -29,11 +27,17 @@ Bob's video should be playing.
 
 - [ ] BDD vs E2E testing?
 
+- [ ] READ: https://www.browserstack.com/guide/best-test-automation-frameworks
+
 - Playwright https://playwright.dev
     * Has Java version as well!
 
 - JBehave https://jbehave.org
     * KAITO: looks super cool.
+
+- Gauge https://gauge.org
+    * Uses markdown to author test cases and scenarios.
+    Seems similar to JBehave.
 
 - Mocha https://mochajs.org
     * Seems simple enough.

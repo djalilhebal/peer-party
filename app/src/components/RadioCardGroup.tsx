@@ -56,7 +56,7 @@ export default function RadioCardGroup({radios, onSelected}: RadioCardGroupProps
     );
 }
 
-interface RadioCardOption {
+export interface RadioCardOption {
     content: any,
     value: any,
     selected?: boolean // TODO support default value

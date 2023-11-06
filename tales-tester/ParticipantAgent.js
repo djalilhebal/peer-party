@@ -47,6 +47,20 @@ export default class ParticipantAgent {
         const context = await browser.newContext();
         const page = await context.newPage();
         this.page = page;
+
+        this._close = async () => {
+            await context.close();
+            await browser.close();
+        }
+    }
+
+    /**
+     * Close the browser.
+     * 
+     * Maybe rename to: Cleanup, destory, etc.
+     */
+    async close() {
+        await this._close();
     }
 
     async toggleVideoPlay() {
@@ -68,12 +82,12 @@ export default class ParticipantAgent {
 
     async checkApproxVideoPosition(timestampStr) {
         const time = parseTimestamp(timestampStr);
-        await this.page.evaluate(isApproxVideoPosition, [time]);
+        return await this.page.evaluate(isApproxVideoPosition, time);
     }
     
     async seekVideoPosition(timestampStr) {
         const time = parseTimestamp(timestampStr);
-        await this.page.evaluate(doVideoSeek, [time]);
+        await this.page.evaluate(doVideoSeek, time);
     }
 
 }
@@ -111,8 +125,9 @@ function doVideoSeek(timeInSeconds) {
  */
 function isApproxVideoPosition(timeInSeconds, errorMargin = 1) {
     const vid = document.querySelector('video');
-    const actual = vid.currentTime;
-    return Math.abs(actual - timeInSeconds) <= errorMargin;
+    const actualTime = vid.currentTime;
+    const isCloseEnough = Math.abs(actualTime - timeInSeconds) <= errorMargin;
+    return isCloseEnough;
 }
 
 function isVideoPlayable() {
