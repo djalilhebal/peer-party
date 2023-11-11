@@ -1,6 +1,6 @@
-import { tale, ParticipantAgent, delay, nar } from "../index.js";
 import assert from 'node:assert';
 // import playwright's assert as assertWeb
+import { tale, ParticipantAgent, delay, nar } from "../index.js";
 
 // Let's assume the server is already running.
 const website = 'http://localhost:5173';
@@ -8,7 +8,7 @@ const website = 'http://localhost:5173';
 const movieLow = 'CHARADE_1953_512kb.mp4';
 
 tale('Alice Alone', async (t) => {
-    const alice = new ParticipantAgent({
+    const alice = ParticipantAgent.create({
         name: 'Alice',
     });
 
@@ -17,7 +17,7 @@ tale('Alice Alone', async (t) => {
     nar('Alice goes to the website');
     await alice.goto(website);
 
-    nar('Alice fills the form and starts')
+    nar('Alice fills the form and starts');
     await alice.check('input[value=OWNER]');
     await alice.fill('input[name=nickname]', 'Arisu');
     await alice.setInputFiles('input[type=file]', movieLow);
