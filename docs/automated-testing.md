@@ -4,23 +4,26 @@
 
 Something like [playwright-test-2023-10-25.js](https://gist.github.com/djalilhebal/bf0beabb6433cf132231729ad8166745)
 
+Was considering literal programming or some approach similar to BDD frameworks (like Cucumber).
+I have never use these two before, but they seem interesting.
 
-## Scenario 1: Toxic Alice.
+Decided to use simpler and more familiar things:
+- Playwright (I used Puppeteer before)
+- Tape.
 
-- Alice enters the website.
-- Alice fills the form as the owner, selects Charade, and starts the session.
-- Alice starts playing the video.
-- Alice shares the session link with Bob.
+And instead of writing a scenario then implementing it, I can "narrate" the code itself.
 
-- Bob enters the website using Alice's link (which includes the session ID), selects Charade, and joins.
-- Bob types, "Yo!"
-- Some time passes, something dramatic happens, Bob wants to comment on it.
-- Bob pauses the video and seeks back rewinds to to 24:40.
-- Bob types, "Dude, did you see that?"
+Kinda similar to "ReplayRecounter" but actually useful.
+(Why does everyhing have to alliterate? Beats me.)
 
-- Alice replies, "stfu and watch"
 
-Bob's video should be playing.
+## Lit programming
+
+- ObservableHQ.com
+- [ ] CHECK https://github.com/hackbg/ganesha
+    * Mentioned on Wikipedia.
+- [ ] CHECK https://github.com/matjp/jweb
+    * Mentioned on Wikipedia.
 
 
 ## Interesting

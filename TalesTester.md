@@ -1,9 +1,5 @@
 # Tales Tester
 
-Kinda similar to "ReplayRecounter" but actually useful.
-(Why does everyhing have to alliterate? Beats me.)
-
-
 ## Test files
 
 _Charade_ (1953).
@@ -23,11 +19,16 @@ So Alice decided to watch a movie, alone.
 
 ![](./docs/tale-0.png)
 
-### Tale 2: Alice and Bob.
+### Tale 1: Toxic Alice.
 
-(TODO)
+(WIP)
 
-- Tests basic messaging functionality.
+Tests basic messaging functionality.
+Basic syncing.
+Different files.
+
+![](./docs/tale-1.png)
+
 
 ### Tale 3: Alice, Bob, and Carol.
 

@@ -5,21 +5,22 @@ Create a watch party for locally stored videos\*.
 
 \* By this, I <strong>obvio</strong>usly mean legally downloaded movies like _Charade_, _Gaslight_, or _How Awful About Alan_...
 
-<center>
-    <img width="400" height="241" alt="Obvio" src="obvio.jpg" />
-</center>
+<p align="center">
+    <img src="obvio.jpg" alt="Trimagasi from 'The Platform' says 'Obvio'" width="400" height="241" />
+</p>
 
-The app's logic is nothing extraordinary\* (unlike [Extraordinary Tales][imdb-extraordinary-tales]).
+There are no [extraordinary tales][imdb-extraordinary-tales] to tell, really.  
+
+I have simply rehashed the same ideas from my previous projects, mainly:
+- [Zero Messenger][zero]: JavaScript, VueJS, inspired by TCP.
+- [Chatroom gRPC][chatroom-grpc]: C#, WPF, inspired by IRC.
+- While this one is: TypeScript, React, inspired by IRC.
+
 I tried to make something that does its job and be as streamlined as possible:
 - It requires no servers, at least none that we need to operate.
   You could even host it on IPFS and it should just work.
 - Automates as much as possible, including setting the room name (defaulting to the video file's name) and setting the room key (from the URL).
 - ...
-
-\* I have simply rehashed the same ideas from my previous projects, mainly:
-- [Zero Messenger][zero]: JavaScript, VueJS, inspired by TCP.
-- [Chatroom gRPC][chatroom-grpc]: C#, WPF, inspired by IRC.
-- While this one is: TypeScript, React, inspired by IRC.
 
 
 ## Name
@@ -38,6 +39,8 @@ I tried to make something that does its job and be as streamlined as possible:
 - **Le Social Viewing**: Local social viewing.
 
 - **In Time**: After the sci-fi [movie of the same name][imdb-in-time]. That's all.
+
+- **PeerPlayer**
 
 - **ParaPlay**: Parallel + Play.
 
@@ -71,8 +74,7 @@ I tried to make something that does its job and be as streamlined as possible:
     * [ ] Presence indicator
 
 - Peer-to-peer
-    * Well, almost...
-    * WebRTC needs servers like a signaling server (we use PeerJS's).
+    * Well, almost. WebRTC needs servers like a signaling server (we use PeerJS's) and STUN and whatever.
 
 
 ## Getting started
@@ -240,6 +242,11 @@ Note: Checked items mean I've skimmed their docs, checked their source code, or/
 - [ ] Jelly Party https://www.jelly-party.com
 
 - [ ] https://github.com/steeelydan/sync-party
+
+
+## Credits
+
+- Favicon is `twemoji-1f4fd.svg`
 
 
 ## License

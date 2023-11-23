@@ -1,5 +1,7 @@
 # Peer Party: Ramblings
 
+- Twitch itself uses IRC or at least an IRC-compatible/IRC-extended protocol.
+
 
 ## Getting started
 
@@ -29,7 +31,6 @@ node tests/tale-0.js | faucet
         + `npm install -g faucet`
 
 
-
 ## Design evolution
 
 PeerParty is inspired by:
@@ -49,29 +50,15 @@ Interesting:
 * https://en.wikipedia.org/wiki/JSON-RPC
 * https://www.jsonrpc.org
 
----
-
-PeerJS serves three purposes:
-1. A signaling server
-    Alternatives:
-    * ?
-    * [ ] READ: [Choice of Signaling Server in Web Real-Time Communication | by Wipro Tech Blogs | Medium](https://wiprotechblogs.medium.com/choice-of-signaling-server-in-web-real-time-communication-e771c1ccf60d)
-2. Data serialization and deserialization layer
-    Alternatives:
-    * Classic JSON.stringify/parse
-    * Protobuf
-3. Abstraction layer
-    Alternatives:
-    * Nothing. The app is simple enough (text-only)
-    * [simple-peer by feross](https://github.com/feross/simple-peer)
-
 
 ## Assumptions
 
 - Trusted participants.
 
 - Tiny scale. \
-So we should't worry too much about windowing (rendering issues)
+So we should't worry too much about
+windowing (rendering issues),
+memory usage (storing "sessions" and "users"),
 or large messages being broadcasted to many participants by the host (latency and bandwidth issues).
 
 
@@ -103,6 +90,22 @@ Could use:
 
 * Why Vite?
     + [ ] READ: https://semaphoreci.com/blog/vite
+
+### PeerJS
+
+PeerJS serves three purposes:
+1. A signaling server
+    Alternatives:
+    * ?
+    * [ ] READ: [Choice of Signaling Server in Web Real-Time Communication | by Wipro Tech Blogs | Medium](https://wiprotechblogs.medium.com/choice-of-signaling-server-in-web-real-time-communication-e771c1ccf60d)
+2. Data serialization and deserialization layer
+    Alternatives:
+    * Classic JSON.stringify/parse
+    * Protobuf
+3. Abstraction layer
+    Alternatives:
+    * Nothing. The app is simple enough (text-only)
+    * [simple-peer by feross](https://github.com/feross/simple-peer)
 
 
 ## Test files
@@ -272,18 +275,21 @@ What if we want to watch _Rashomon (1950)_ with subtitles?
 - Subtitles can be added, but they have to be in the WebVTT format.
     * [Adding captions and subtitles to HTML video - Developer guides | MDN](https://developer.mozilla.org/en-US/docs/Web/Guide/Audio_and_video_delivery/Adding_captions_and_subtitles_to_HTML5_video)
 
+- **Non-option 1**:
+Use VLC via VLC HTTP requests.
+
 - **Option 1**:
-FFmpeg can convert formats to WebVTT (e.g. `ffmpeg -i x.srt x.vtt`).
-The easiest solution would be to load the whole program in the browser and do the conversion there,
-Obviously this is not practical.
+FFmpeg can convert formats to WebVTT (as in `ffmpeg -i x.srt x.vtt`).
+The easiest solution would be to load the whole program in the browser and do the conversion there.
+Needless to say, this is not practical.
     * https://github.com/ffmpegwasm/ffmpeg.wasm
         + `ffmpeg-core.wasm` is ~23mb. Unacceptable!
 
 - **Option 2**:
-Use VLC via VLC HTTP requests.
+Find or write a simple parser in JS.
 
 - **Option 3**:
-Find or write a simple parser in JS.
+SubSimplex.
 
 
 ## If we had to rely on a server / serverless platform
